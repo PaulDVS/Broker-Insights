@@ -1,0 +1,26 @@
+package com.br.in.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+public class Client {
+
+	@Getter
+	@Setter
+	@Id
+	private int idclient_tb;
+	
+	@Getter
+	@Setter
+	private String client_name;
+}

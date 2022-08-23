@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=Broker-Insights-Backend/C:\/Users\/Admin\/.m2\/repository\/org\/springframework\/data\/spring-data-jpa\/2.7.2\/spring-data-jpa-2.7.2.jar=/maven.pomderived=/true=/=/maven.pomderived=/true=/=/maven.groupId=/org.springframework.data=/=/maven.artifactId=/spring-data-jpa=/=/maven.version=/2.7.2=/=/maven.scope=/compile=/&lt;org.springframework.data.jpa.repository(JpaRepository.class[JpaRepository" modifiers="1537" timestamp="1661142624095"/>
+    <typeInfo handle="=Broker-Insights-Backend/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.br.in.service{PolicyService.java[PolicyService" modifiers="513" timestamp="1661219827256"/>
+    <typeInfo handle="=Broker-Insights-Backend/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.br.in.persistence{PolicyDoa.java[PolicyDoa" modifiers="513" timestamp="1661219595466"/>
+</typeInfoHistroy>

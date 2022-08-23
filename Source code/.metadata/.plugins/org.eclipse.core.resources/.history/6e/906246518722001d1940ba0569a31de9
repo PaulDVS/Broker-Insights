@@ -1,0 +1,5 @@
+package com.br.in.service;
+
+public interface PolicyService {
+
+}

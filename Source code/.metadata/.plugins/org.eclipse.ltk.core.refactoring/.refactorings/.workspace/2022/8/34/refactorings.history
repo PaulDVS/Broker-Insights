@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;Broker-Insights&apos;" deleteContents="true" description="Delete resource &apos;Broker-Insights&apos;" element1="/Broker-Insights" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1661138606946"/>&#x0A;<refactoring comment="Delete resource &apos;Broker-Insights&apos;" deleteContents="true" description="Delete resource &apos;Broker-Insights&apos;" element1="/Broker-Insights" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1661138665369"/>
+</session>

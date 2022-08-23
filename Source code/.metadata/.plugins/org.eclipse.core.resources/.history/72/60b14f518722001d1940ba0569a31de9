@@ -1,0 +1,5 @@
+package com.br.in.service;
+
+public class PolicyServiceImpl implements PolicyService {
+
+}
