@@ -2,6 +2,8 @@ package com.br.in.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,14 +23,11 @@ public class Customer {
 	@Getter
 	@Setter
 	@Id
-	private int idcustomer_tb;
-	
-	@Getter
-	@Setter
-	@Column(unique=true)
 	private String customer_name;
 	
 	@Getter
 	@Setter
 	private String customer_address;
+	
+	
 }

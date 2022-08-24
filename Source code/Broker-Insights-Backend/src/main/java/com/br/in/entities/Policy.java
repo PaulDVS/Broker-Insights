@@ -2,6 +2,8 @@ package com.br.in.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,16 +22,16 @@ public class Policy {
 
 	@Getter
 	@Setter
-	@Id
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idpolicies_tb;
 	
 	@Getter
 	@Setter
-	private int idclient_tb;
+	private String client_name;
 	
 	@Getter
 	@Setter
-	private int idcustomer_tb;
+	private String customer_name;
 	
 	@Getter
 	@Setter
@@ -42,4 +44,15 @@ public class Policy {
 	@Getter
 	@Setter
 	private String insurer_name;
+
+	public Policy(String client_name, String customer_name, float premium, String policy_type, String insurer_name) {
+		super();
+		this.client_name = client_name;
+		this.customer_name = customer_name;
+		this.premium = premium;
+		this.policy_type = policy_type;
+		this.insurer_name = insurer_name;
+	}
+	
+	
 }

@@ -1,0 +1,12 @@
+package com.br.in.service;
+
+import com.br.in.entities.Client;
+import com.br.in.entities.ClientList;
+import com.br.in.entities.Customer;
+import com.br.in.entities.Policy;
+
+public interface PolicyService {
+	public ClientList getAllClients() {
+		return null;
+	}
+}

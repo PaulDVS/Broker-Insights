@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import com.br.in.entities.CustomerPolicy;
 import com.br.in.service.PolicyService;
 
 @SpringBootApplication(scanBasePackages ="com.br.in")
@@ -24,9 +25,8 @@ public class BrokerInsightsBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		policyService.test1();
-		policyService.test2();
-		policyService.test3();
+		
+		
 	}
 
 }

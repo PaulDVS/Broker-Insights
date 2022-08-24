@@ -1,0 +1,58 @@
+package com.br.in.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
+@Entity
+@Table(name = "policies_tb")
+@AllArgsConstructor
+@NoArgsConstructor
+public class Policy {
+
+	@Getter
+	@Setter
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idpolicies_tb;
+	
+	@Getter
+	@Setter
+	private int client_name;
+	
+	@Getter
+	@Setter
+	private int customer_name;
+	
+	@Getter
+	@Setter
+	private float premium;
+	
+	@Getter
+	@Setter
+	private String policy_type;
+	
+	@Getter
+	@Setter
+	private String insurer_name;
+
+	public Policy(int client_name, int customer_name, float premium, String policy_type, String insurer_name) {
+		super();
+		this.client_name = client_name;
+		this.customer_name = customer_name;
+		this.premium = premium;
+		this.policy_type = policy_type;
+		this.insurer_name = insurer_name;
+	}
+	
+	
+}

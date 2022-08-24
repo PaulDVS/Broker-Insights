@@ -2,6 +2,8 @@ package com.br.in.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,10 +23,5 @@ public class Client {
 	@Getter
 	@Setter
 	@Id
-	private int idclient_tb;
-	
-	@Getter
-	@Setter
-	@Column(unique=true)
 	private String client_name;
 }

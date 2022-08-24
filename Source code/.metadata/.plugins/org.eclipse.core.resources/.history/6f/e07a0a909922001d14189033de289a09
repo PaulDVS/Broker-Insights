@@ -1,0 +1,8 @@
+package com.br.in.resource;
+
+public class PolicyResource {
+
+	
+	@GetMapping(path = "/clientlist", produces = MediaType.APPLICATION_JSON_VALUE)
+	public 
+}

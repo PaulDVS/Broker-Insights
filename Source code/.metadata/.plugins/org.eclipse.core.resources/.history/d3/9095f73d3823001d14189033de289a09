@@ -1,0 +1,56 @@
+package com.br.in.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.br.in.entities.Client;
+import com.br.in.entities.ClientList;
+import com.br.in.entities.Customer;
+import com.br.in.entities.CustomerPolicy;
+import com.br.in.entities.CustomerPolicyList;
+import com.br.in.entities.Policy;
+
+import com.br.in.persistence.ClientDoa;
+import com.br.in.persistence.CustomerDoa;
+import com.br.in.persistence.PolicyDoa;
+
+@Service
+public class PolicyServiceImpl implements PolicyService {
+
+	@Autowired
+	ClientDoa clientDoa;
+	
+	@Autowired
+	CustomerDoa customerDoa;
+	
+	@Autowired
+	PolicyDoa policyDoa;
+
+	@Override
+	public ClientList getAllClients() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CustomerPolicyList getClientPolicies(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CustomerPolicy savePolicy(CustomerPolicy customerPolicy) {
+		
+		
+		
+		Policy tempPolicy = new Policy(customerPolicy.getClient_name(), customerPolicy.getCustomer_name(), customerPolicy.getPremium(), customerPolicy.getPolicy_type(), customerPolicy.getInsurer_name());
+		return policyDoa.save(tempPolicy);
+	}
+
+	@Override
+	public CustomerPolicy modifyPolicy(CustomerPolicy customerPolicy) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
