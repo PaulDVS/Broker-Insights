@@ -20,22 +20,25 @@ public class PolicyResource {
 	@Autowired
 	PolicyService policyService;
 	
+	//Api to return a list of all clients.
 	@GetMapping(path = "/clientList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ClientList listAllClients() {
 		return policyService.getAllClients();
 	}
 	
+	//Api to return a list of all policies associated to a specific client
 	@GetMapping(path = "/clientPolicies/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public CustomerPolicyList clientPolicies(@PathVariable String name) {
 		return policyService.getClientPolicies(name);
 	}
 	
-	
+	//Api to save the uploaded policy
 	@PostMapping(path = "/createPolicy", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public CustomerPolicy clientPolicies(@RequestBody CustomerPolicy customerPolicy) {
 		return policyService.savePolicy(customerPolicy);
 	}
 	
+	//Api to modify an existing policy using the uploaded policy data.
 	@PutMapping(value="/modifyPolicy",produces=MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public CustomerPolicy confirmOrder(@RequestBody CustomerPolicy customerPolicy) {
 		return policyService.modifyPolicy(customerPolicy);

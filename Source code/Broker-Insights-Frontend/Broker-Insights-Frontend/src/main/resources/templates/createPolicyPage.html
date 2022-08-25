@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Broker Insight Code Challenge</title>
+</head>
+<body style="background-color: #e46c0a"> 
+
+	<div id="menu_bar" style="width:100%; height:80px; background-color: #d35f05; text-align:center">
+	
+		<img th:src="@{/broker-logo.gif}" style="display:inline-block; width: 200px; height: 48px; float:left; margin-left: 30px; margin-top:16px"/>
+		
+		<h1 style="display:inline-block">Broker Insight Code Challenge</h1>
+	
+	</div>
+	
+	<div id="main_content" style="width:100% height:60px">
+		
+		<div id="add_page" style="width:100%">
+	
+	
+			<div class="d-flex justify-content-center">
+				<div class="col-sm-4">
+					<form action="#" th:action="@{/createPolicy}" method="post" th:object="${Policy}">
+						
+						
+						<div class="form-group mt-3" style="display:none">
+							<label>Client Name:</label> <input class="form-control"
+							type="text" th:field="*{client_name}" th:value = "${current_client_name}" th:name="clientName"> <span
+							th:if="${#fields.hasErrors('client_name')}"
+							th:errors="*{client_name}">Client Name</span>
+						</div>
+						
+						<div class="form-group mt-3">
+							<label>Customer Name:</label> <input class="form-control"
+							type="text" th:field="*{customer_name}"> <span
+							th:if="${#fields.hasErrors('customer_name')}"
+							th:errors="*{customer_name}">Customer Name</span>
+						</div>
+						
+						<div class="form-group mt-3">
+							<label>Policy Premium:</label> <input class="form-control"
+							type="number" max="9999999.99" step="0.01" th:field="*{premium}"> <span
+							th:if="${#fields.hasErrors('premium')}"
+							th:errors="*{premium}">Policy Premium</span>
+						</div>
+						
+						<div class="form-group mt-3">
+							<label>Policy Type:</label> <input class="form-control"
+							type="text" th:field="*{policy_type}"> <span
+							th:if="${#fields.hasErrors('policy_type')}"
+							th:errors="*{policy_typee}">Policy Type</span>
+						</div>
+						
+						<div class="form-group mt-3">
+							<label>Insurer Name:</label> <input class="form-control"
+							type="text" th:field="*{insurer_name}"> <span
+							th:if="${#fields.hasErrors('insurer_name')}"
+							th:errors="*{insurer_name}">Insurer Name</span>
+						</div>
+
+						<input class="btn btn-primary mt-5" style="float: right;"
+							type="submit" value="Create" id="createBtn">
+					</form>
+				</div>
+			</div>
+	
+	
+	</div>
+
+
+</body>
+</html>

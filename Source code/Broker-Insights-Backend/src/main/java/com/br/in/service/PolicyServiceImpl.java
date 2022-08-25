@@ -28,19 +28,22 @@ public class PolicyServiceImpl implements PolicyService {
 	@Autowired
 	PolicyDoa policyDoa;
 
+	//Simple service to call the doa and get a list of all clients
 	@Override
 	public ClientList getAllClients() {
 		ClientList tempClientList = new ClientList(clientDoa.findAll());
 		return tempClientList;
 	}
 
+	//Service function to get a list of policies belonging to a client.
 	@Override
 	public CustomerPolicyList getClientPolicies(String name) {
 
-		
+		//Gets all policies for a specific client
 		ArrayList<Policy> policyList = policyDoa.getAllPoliciesForClient(name);
 		ArrayList<CustomerPolicy> templist = new ArrayList();
 		
+		//For each policy, looks up the associated customer and adds there data to templist
 		for(Policy current : policyList) {
 			Customer tempCustomer = customerDoa.findCustomerByName(current.getCustomer_name());
 			
@@ -50,22 +53,29 @@ public class PolicyServiceImpl implements PolicyService {
 			
 		}
 		
+		//Saves templist into a proper object and returns it
 		CustomerPolicyList tempCustomerPolicyList = new CustomerPolicyList(templist);
 		
 		return tempCustomerPolicyList;
 	}
 
+	//Service function to save a new policy
 	@Override
 	public CustomerPolicy savePolicy(CustomerPolicy customerPolicy) {
+		//Checks if the customer of the new policy is also new or an existing one
 		Customer testCustomer = customerDoa.findCustomerByName(customerPolicy.getCustomer_name());
 		if(testCustomer == null) {
+			//If the customer is also new, save the new customer
 			Customer tempCustomer = new Customer(customerPolicy.getCustomer_name(), customerPolicy.getCustomer_address());
 			customerDoa.save(tempCustomer);
 		} else {		
+			//If customer already exists, then make sure the address of the new policy is correct
 			customerPolicy.setCustomer_address(testCustomer.getCustomer_address());
 		}
 		
+		//Creates a new Policy object from the input data, id will be auto generated
 		Policy tempPolicy = new Policy(customerPolicy.getClient_name(), customerPolicy.getCustomer_name(), customerPolicy.getPremium(), customerPolicy.getPolicy_type(), customerPolicy.getInsurer_name());
+		//Save the new policy and return the updated policy object
 		Policy savedPolicy = policyDoa.save(tempPolicy);
 		
 		customerPolicy.setIdpolicies_tb(savedPolicy.getIdpolicies_tb());
@@ -73,17 +83,23 @@ public class PolicyServiceImpl implements PolicyService {
 		return customerPolicy;
 	}
 
+	//Service function to modify an existing policy
 	@Override
 	public CustomerPolicy modifyPolicy(CustomerPolicy customerPolicy) {
+		//Checks if the customer of the policy is new or an existing one
 		Customer testCustomer = customerDoa.findCustomerByName(customerPolicy.getCustomer_name());
 		if(testCustomer == null) {
+			//If the customer is new, save the new customer
 			Customer tempCustomer = new Customer(customerPolicy.getCustomer_name(), customerPolicy.getCustomer_address());
 			customerDoa.save(tempCustomer);
 		} else {		
+			//If customer already exists, then make sure the address of the policy is correct
 			customerPolicy.setCustomer_address(testCustomer.getCustomer_address());
 		}
 		
+		//Creates a new Policy object from the input data, id is specified because the policy already exists
 		Policy tempPolicy = new Policy(customerPolicy.getIdpolicies_tb(), customerPolicy.getClient_name(), customerPolicy.getCustomer_name(), customerPolicy.getPremium(), customerPolicy.getPolicy_type(), customerPolicy.getInsurer_name());
+		//Save the updated policy
 		Policy savedPolicy = policyDoa.save(tempPolicy);
 
 		return customerPolicy;
