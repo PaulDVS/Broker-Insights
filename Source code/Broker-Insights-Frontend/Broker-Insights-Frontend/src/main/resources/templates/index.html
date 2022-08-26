@@ -6,6 +6,8 @@
 </head>
 <body style="background-color: #e46c0a"> 
 
+	<!-- A Bar At the top of the page Containing the title and the logo of Broker-insight. Both of which allo users
+	To go back to the main page when pressed -->
 	<div id="menu_bar" style="width:100%; height:80px; background-color: #d35f05; text-align:center">
 	
 		<img th:src="@{/broker-logo.gif}" onclick="location.href='/'" style="display:inline-block; width: 200px; height: 48px; float:left; margin-left: 30px; margin-top:16px"/>
@@ -23,6 +25,7 @@
 	
 			<div class="col-sm-3" style="width:50%; height:75px; margin:auto; background-color: #d35f05">
 			
+				<!-- Form to allow users to select the client to search policies for -->
 				<form action="#" th:action="@{/searchClientsPolicies}" method="post" th:object="${Client}">
 				<br>
 					<select style="width:90%; margin-left: 10px;" class="form-control" id="client_name" th:field="*{client_name}">
@@ -41,17 +44,19 @@
 			
 			<br>
 			
+			<!-- Div to hold policies, th:if means that if there are not policies, the div is hidden -->
 			<div id="policy_div" style="width:90%; margin:auto; background-color: #d35f05;" th:if="${!customerPolicies.isEmpty()}">
 			
 				<br>
 				
 				<h3 style="margin-left:20px" th:text="@{'Client Name: ' + ${client_name}}"></h3>
 				
+				<!-- Button to create a new policy for the client, Client name is stored in the generated href -->
 				<button type="button" th:onclick="@{'location.href = \' /addPolicy/' +${client_name} + ' \' '}" style="float:right; margin-right: 10px;">Add new Policy</button>
 				
 				<br>
 			
-			
+				<!-- Template div that gets copied and filled in for each policy in the list -->
 				<div id ="loadedPolicies" th:each="customerPolicy : ${customerPolicies}" >
 					<div style="width:90%; margin:auto; margin-top:10px; background-color: #e46c0a;">
 						<div style="height:10px"></div>
@@ -61,6 +66,7 @@
 						<p style="margin-left:20px" th:text="@{'Policy Type: ' + ${customerPolicy.policy_type}}"></p>
 						<p style="margin-left:20px" th:text="@{'Insurer name: ' + ${customerPolicy.insurer_name}}"></p>
 						
+						<!-- Button to modify a policy, created for each policy and holds their ID in the generated href -->
 						<button type="button" th:onclick="@{'location.href = \' /modifyPolicy/' +${customerPolicy.idpolicies_tb} + ' \' '}" style="float:right; margin-right: 10px;">Modify Policy</button>
 						<div style="height:10px"></div>
 					 	

@@ -6,6 +6,8 @@
 </head>
 <body style="background-color: #e46c0a"> 
 
+	<!-- A Bar At the top of the page Containing the title and the logo of Broker-insight. Both of which allo users
+	To go back to the main page when pressed -->
 	<div id="menu_bar" style="width:100%; height:80px; background-color: #d35f05; text-align:center">
 	
 		<img th:src="@{/broker-logo.gif}" onclick="location.href='/'" style="display:inline-block; width: 200px; height: 48px; float:left; margin-left: 30px; margin-top:16px"/>
@@ -25,6 +27,7 @@
 					<div style="height:20px"></div>
 					<form action="#" th:action="@{/createPolicy}" method="post" th:object="${Policy}">
 						
+						<!-- Hidden div to hold Policy ID -->
 						<div class="form-group mt-3" style="display:none">
 							<label>Policy ID:</label> <input class="form-control"
 							type="number" th:field="*{idpolicies_tb}" th:name="id"> <span
@@ -32,7 +35,7 @@
 							th:errors="*{idpolicies_tb}">Policy ID</span>
 						</div>
 						
-						
+						<!-- Hidden div to hold Client Name-->
 						<div class="form-group mt-3" style="display:none">
 							<label>Client Name:</label> <input class="form-control"
 							type="text" th:field="*{client_name}" th:value = "${current_client_name}" th:name="clientName"> <span
