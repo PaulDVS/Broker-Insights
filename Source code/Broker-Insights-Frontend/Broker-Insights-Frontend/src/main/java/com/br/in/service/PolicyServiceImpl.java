@@ -39,5 +39,10 @@ public class PolicyServiceImpl implements PolicyService {
 		HttpEntity<CustomerPolicy> entity = new HttpEntity<CustomerPolicy>(customerPolicy, headers);
 		return restTemplate.exchange("http://localhost:8090/modifyPolicy", HttpMethod.PUT, entity, CustomerPolicy.class).getBody();
 	}
+
+	@Override
+	public CustomerPolicy getPolicy(int id) {
+		return restTemplate.getForObject("http://localhost:8090/getPolicy/" +id, CustomerPolicy.class);
+	}
 	
 }

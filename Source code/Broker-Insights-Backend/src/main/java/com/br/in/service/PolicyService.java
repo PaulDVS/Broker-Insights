@@ -13,6 +13,8 @@ public interface PolicyService {
 	
 	CustomerPolicyList getClientPolicies(String name);
 	
+	CustomerPolicy getPolicy(int id);
+	
 	CustomerPolicy savePolicy(CustomerPolicy customerPolicy);
 	
 	CustomerPolicy modifyPolicy(CustomerPolicy customerPolicy);

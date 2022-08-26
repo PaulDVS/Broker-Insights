@@ -32,6 +32,11 @@ public class PolicyResource {
 		return policyService.getClientPolicies(name);
 	}
 	
+	@GetMapping(path = "/getPolicy/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public CustomerPolicy getPolicy(@PathVariable int id) {
+		return policyService.getPolicy(id);
+	}
+	
 	//Api to save the uploaded policy
 	@PostMapping(path = "/createPolicy", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public CustomerPolicy clientPolicies(@RequestBody CustomerPolicy customerPolicy) {

@@ -40,7 +40,7 @@ public class PoliciesController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/searchClientsPolcies")
+	@RequestMapping("/searchClientsPolicies")
 	public ModelAndView addPolicy(Client currentClient) {
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -67,15 +67,15 @@ public class PoliciesController {
 	public ModelAndView addPolicy(@PathVariable String client_name) {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		Policy policy = new Policy();
-		policy.setClient_name(client_name);
-		modelAndView.addObject("Policy", policy);
+		CustomerPolicy customerPolicy = new CustomerPolicy();
+		customerPolicy.setClient_name(client_name);
+		modelAndView.addObject("Policy", customerPolicy);
 		
 		modelAndView.setViewName("createPolicyPage");
 		return modelAndView;
 	}
 	
-	@RequestMapping("/createPolicy/")
+	@RequestMapping("/createPolicy")
 	public ModelAndView createPolicy(CustomerPolicy customerPolicy) {
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -100,15 +100,21 @@ public class PoliciesController {
 	}
 	
 	
-	@RequestMapping("/modifyPolicy")
-	public ModelAndView modifyPolicy() {
+	@RequestMapping("/modifyPolicy/{id}")
+	public ModelAndView modifyPolicy(@PathVariable int id) {
 		ModelAndView modelAndView = new ModelAndView();
+		
+		CustomerPolicy customerPolicy = policyService.getPolicy(id);
+		
+		modelAndView.addObject("Policy", customerPolicy);
+		
+		modelAndView.setViewName("modifyPolicyPage");
 				
 		return modelAndView;
 	}
 	
 	
-	@RequestMapping("/submitModifiedPolicy/")
+	@RequestMapping("/submitModifiedPolicy")
 	public ModelAndView submitModifiedPolicy(CustomerPolicy customerPolicy) {
 		ModelAndView modelAndView = new ModelAndView();
 		

@@ -105,4 +105,16 @@ public class PolicyServiceImpl implements PolicyService {
 		return customerPolicy;
 	}
 
+	@Override
+	public CustomerPolicy getPolicy(int id) {
+
+		Policy policy = policyDoa.findById(id).get();
+		
+		Customer customer = customerDoa.findCustomerByName(policy.getCustomer_name());
+		
+		CustomerPolicy customerPolicy = new CustomerPolicy(policy.getIdpolicies_tb(), policy.getClient_name(), customer.getCustomer_name(), customer.getCustomer_address(), policy.getPremium(), policy.getPolicy_type(), policy.getInsurer_name()); 
+		
+		return customerPolicy;
+	}
+
 }

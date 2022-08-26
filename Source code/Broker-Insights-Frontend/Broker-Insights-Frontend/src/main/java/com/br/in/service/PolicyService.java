@@ -9,6 +9,8 @@ public interface PolicyService {
 	
 	public CustomerPolicyList getClientPolicies(String name);
 	
+	public CustomerPolicy getPolicy(int id);
+	
 	public CustomerPolicy uploadNewPolicy(CustomerPolicy customerPolicy);
 	
 	public CustomerPolicy modifyPolicy(CustomerPolicy customerPolicy);

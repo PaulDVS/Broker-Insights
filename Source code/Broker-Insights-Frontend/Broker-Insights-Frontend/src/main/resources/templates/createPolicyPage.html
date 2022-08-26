@@ -8,9 +8,9 @@
 
 	<div id="menu_bar" style="width:100%; height:80px; background-color: #d35f05; text-align:center">
 	
-		<img th:src="@{/broker-logo.gif}" style="display:inline-block; width: 200px; height: 48px; float:left; margin-left: 30px; margin-top:16px"/>
+		<img th:src="@{/broker-logo.gif}" onclick="location.href='/'" style="display:inline-block; width: 200px; height: 48px; float:left; margin-left: 30px; margin-top:16px"/>
 		
-		<h1 style="display:inline-block">Broker Insight Code Challenge</h1>
+		<h1 style="display:inline-block" onclick="location.href='/'">Broker Insight Code Challenge</h1>
 	
 	</div>
 	
@@ -18,10 +18,19 @@
 		
 		<div id="add_page" style="width:100%">
 	
-	
-			<div class="d-flex justify-content-center">
+			<div style="height:30px"></div>
+		
+			<div class="d-flex justify-content-center" style="width:90%; margin:auto; background-color: #d35f05;">
 				<div class="col-sm-4">
+					<div style="height:20px"></div>
 					<form action="#" th:action="@{/createPolicy}" method="post" th:object="${Policy}">
+						
+						<div class="form-group mt-3" style="display:none">
+							<label>Policy ID:</label> <input class="form-control"
+							type="number" th:field="*{idpolicies_tb}" th:name="id"> <span
+							th:if="${#fields.hasErrors('idpolicies_tb')}"
+							th:errors="*{idpolicies_tb}">Policy ID</span>
+						</div>
 						
 						
 						<div class="form-group mt-3" style="display:none">
@@ -31,37 +40,56 @@
 							th:errors="*{client_name}">Client Name</span>
 						</div>
 						
-						<div class="form-group mt-3">
+						<div class="form-group mt-3" style="margin-left:20px">
 							<label>Customer Name:</label> <input class="form-control"
 							type="text" th:field="*{customer_name}"> <span
 							th:if="${#fields.hasErrors('customer_name')}"
 							th:errors="*{customer_name}">Customer Name</span>
 						</div>
 						
-						<div class="form-group mt-3">
+						<div style="height:10px"></div>
+						
+						<div class="form-group mt-3" style="margin-left:20px">
+							<label>Customer Address:</label> <input class="form-control"
+							type="text" th:field="*{customer_address}"> <span
+							th:if="${#fields.hasErrors('customer_address')}"
+							th:errors="*{customer_address}">Customer Address</span>
+						</div>
+						
+						<div style="height:10px"></div>
+						
+						
+						<div class="form-group mt-3" style="margin-left:20px">
 							<label>Policy Premium:</label> <input class="form-control"
 							type="number" max="9999999.99" step="0.01" th:field="*{premium}"> <span
 							th:if="${#fields.hasErrors('premium')}"
 							th:errors="*{premium}">Policy Premium</span>
 						</div>
 						
-						<div class="form-group mt-3">
+						<div style="height:10px"></div>
+						
+						<div class="form-group mt-3" style="margin-left:20px">
 							<label>Policy Type:</label> <input class="form-control"
 							type="text" th:field="*{policy_type}"> <span
 							th:if="${#fields.hasErrors('policy_type')}"
 							th:errors="*{policy_typee}">Policy Type</span>
 						</div>
 						
-						<div class="form-group mt-3">
+						<div style="height:10px"></div>
+						
+						<div class="form-group mt-3" style="margin-left:20px">
 							<label>Insurer Name:</label> <input class="form-control"
 							type="text" th:field="*{insurer_name}"> <span
 							th:if="${#fields.hasErrors('insurer_name')}"
 							th:errors="*{insurer_name}">Insurer Name</span>
 						</div>
+						
+						<div style="height:10px"></div>
 
-						<input class="btn btn-primary mt-5" style="float: right;"
+						<input class="btn btn-primary mt-5" style="float: right; margin-right:20px"
 							type="submit" value="Create" id="createBtn">
 					</form>
+					<div style="height:40px"></div>
 				</div>
 			</div>
 	

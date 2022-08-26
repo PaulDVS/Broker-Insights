@@ -8,9 +8,9 @@
 
 	<div id="menu_bar" style="width:100%; height:80px; background-color: #d35f05; text-align:center">
 	
-		<img th:src="@{/broker-logo.gif}" style="display:inline-block; width: 200px; height: 48px; float:left; margin-left: 30px; margin-top:16px"/>
+		<img th:src="@{/broker-logo.gif}" onclick="location.href='/'" style="display:inline-block; width: 200px; height: 48px; float:left; margin-left: 30px; margin-top:16px"/>
 		
-		<h1 style="display:inline-block">Broker Insight Code Challenge</h1>
+		<h1 style="display:inline-block" onclick="location.href='/'">Broker Insight Code Challenge</h1>
 	
 	</div>
 	
@@ -23,7 +23,7 @@
 	
 			<div class="col-sm-3" style="width:50%; height:75px; margin:auto; background-color: #d35f05">
 			
-				<form action="#" th:action="@{/searchClientsPolcies}" method="post" th:object="${Client}">
+				<form action="#" th:action="@{/searchClientsPolicies}" method="post" th:object="${Client}">
 				<br>
 					<select style="width:90%; margin-left: 10px;" class="form-control" id="client_name" th:field="*{client_name}">
 						<option value="">Select client</option>
@@ -31,10 +31,10 @@
 							th:value="${client.client_name}"
 							th:text="${client.client_name}"></option>
 					</select>
-					<br>
-					<input class="btn btn-primary mt-5" style="float: right;; margin-right: 10px; margin-bottom: 10px;"
+					<div style="height:10px"></div>
+					<input class="btn btn-primary mt-5" style="float: right; margin-right: 10px; margin-bottom: 10px;"
 								type="submit" value="Search" id="searchBtn">
-					<br>
+					<div style="height:10px"></div>
 				</form>
 				
 			</div>
@@ -45,21 +45,25 @@
 			
 				<br>
 				
-				<a th:href="@{'/addPolicy/' +${client_name}}" class ="btn btn-primary" style="float:right;">Add new Policy</a>
-		
+				<h3 style="margin-left:20px" th:text="@{'Client Name: ' + ${client_name}}"></h3>
+				
+				<button type="button" th:onclick="@{'location.href = \' /addPolicy/' +${client_name} + ' \' '}" style="float:right; margin-right: 10px;">Add new Policy</button>
+				
 				<br>
 			
 			
 				<div id ="loadedPolicies" th:each="customerPolicy : ${customerPolicies}" >
 					<div style="width:90%; margin:auto; margin-top:10px; background-color: #e46c0a;">
-						<p th:text="${customerPolicy.customer_name}"></p>
-						<p th:text="${customerPolicy.customer_address}"></p>
-						<p th:text="${customerPolicy.premium}"></p>
-						<p th:text="${customerPolicy.policy_type}"></p>
-						<p th:text="${customerPolicy.insurer_name}"></p>
+						<div style="height:10px"></div>
+						<p style="margin-left:20px" th:text="@{'Customer Name: ' + ${customerPolicy.customer_name}}"></p>
+						<p style="margin-left:20px" th:text="@{'Customer Address: ' + ${customerPolicy.customer_address}}"></p>
+						<p style="margin-left:20px" th:text="@{'Premium: ' + ${customerPolicy.premium}}"></p>
+						<p style="margin-left:20px" th:text="@{'Policy Type: ' + ${customerPolicy.policy_type}}"></p>
+						<p style="margin-left:20px" th:text="@{'Insurer name: ' + ${customerPolicy.insurer_name}}"></p>
 						
-						<a th:href="@{'/addPolicy/' + ${customerPolicy.idpolicies_tb}" class ="btn btn-primary" style="float:right;">Modify Policy</a>
-					 
+						<button type="button" th:onclick="@{'location.href = \' /modifyPolicy/' +${customerPolicy.idpolicies_tb} + ' \' '}" style="float:right; margin-right: 10px;">Modify Policy</button>
+						<div style="height:10px"></div>
+					 	
 					 	<br>
 					</div>
 				</div>
