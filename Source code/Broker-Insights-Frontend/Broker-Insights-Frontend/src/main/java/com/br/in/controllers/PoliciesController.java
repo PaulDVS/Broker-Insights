@@ -1,6 +1,11 @@
 package com.br.in.controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +20,7 @@ import com.br.in.entities.ClientList;
 import com.br.in.entities.CustomerPolicy;
 import com.br.in.entities.CustomerPolicyList;
 import com.br.in.entities.Policy;
+import com.br.in.entities.PolicyFilter;
 import com.br.in.service.PolicyService;
 
 @Controller
@@ -32,7 +38,7 @@ public class PoliciesController {
 		ClientList clientList = policyService.getClientList();
 		modelAndView.addObject("ClientList", clientList.getClients());
 		
-		//Sets up the c;ient object for when users press the search Button to select a client.
+		//Sets up the client object for when users press the search Button to select a client.
 		Client client = new Client();
 		modelAndView.addObject("Client", client);
 		
@@ -41,6 +47,11 @@ public class PoliciesController {
 		//Creates a blank CustomerPolicy, required so that the Div that would contain all the loaded policies doesnt throw errors
 		ArrayList<CustomerPolicy> temp = new ArrayList<CustomerPolicy>();
 		modelAndView.addObject("customerPolicies", temp);
+		
+		//Sets up the filter on page
+		PolicyFilter newFilter = new PolicyFilter();
+		newFilter.setPremiumMax(9999999.99f);
+		modelAndView.addObject("PolicyFilter", newFilter);
 		
 		return modelAndView;
 	}
@@ -67,6 +78,11 @@ public class PoliciesController {
 		
 		//Adds the clients name to specific parts of the page to pass it further along.
 		modelAndView.addObject("client_name", currentClient.getClient_name());
+		
+		//Sets up the filter on page
+		PolicyFilter newFilter = new PolicyFilter();
+		newFilter.setPremiumMax(9999999.99f);
+		modelAndView.addObject("PolicyFilter", newFilter);
 		
 		return modelAndView;
 	}
@@ -113,6 +129,10 @@ public class PoliciesController {
 		//Adds the clients name to specific parts of the page to pass it further along.
 		modelAndView.addObject("client_name", customerPolicy.getClient_name());
 		
+		//Sets up the filter on page
+		PolicyFilter newFilter = new PolicyFilter();
+		newFilter.setPremiumMax(9999999.99f);
+		modelAndView.addObject("PolicyFilter", newFilter);
 		
 		return modelAndView;
 	}
@@ -159,6 +179,79 @@ public class PoliciesController {
 		//Adds the clients name to specific parts of the page to pass it further along.
 		modelAndView.addObject("client_name", customerPolicy.getClient_name());
 		
+		//Sets up the filter on page
+		PolicyFilter newFilter = new PolicyFilter();
+		newFilter.setPremiumMax(9999999.99f);
+		modelAndView.addObject("PolicyFilter", newFilter);
+		
 		return modelAndView;
 	}
+	
+	
+	//Function for when the user searches for a specific clients policies.
+	@RequestMapping("/filterPolicy/{client_name}")
+	public ModelAndView f(@PathVariable String client_name, PolicyFilter filter) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		
+		//Loads in the list of clients into the drop down menu
+		ClientList clientList = policyService.getClientList();
+		modelAndView.addObject("ClientList", clientList.getClients());
+				
+		//Sets up the client object for when users press the search Button to select a client.
+		Client client = new Client();
+		modelAndView.addObject("Client", client);
+				
+		modelAndView.setViewName("index");
+		
+		//Uses the name of the current client to get a list of policies
+		CustomerPolicyList customerPolicyList = policyService.getClientPolicies(client_name);
+		
+		//Filters and sorts the list of client policies
+		List<CustomerPolicy> tempList = customerPolicyList.getCustomerPolicy().stream()
+				.filter(p -> p.getCustomer_name().contains(filter.getCustomerFilter()))
+				.filter(p -> p.getCustomer_address().contains(filter.getAddressFilter()))
+				.filter(p -> p.getPremium() >= filter.getPremiumMin())
+				.filter(p -> p.getPremium() <= filter.getPremiumMax())
+				.collect(Collectors.toList());
+
+		
+		switch(filter.getSortField()){
+			case "customer_name":
+				tempList.sort(Comparator.comparing(CustomerPolicy::getCustomer_name));
+				break;
+				
+			case "customer_address":
+				tempList.sort(Comparator.comparing(CustomerPolicy::getCustomer_address));
+				break;
+				
+			case "premium":
+				tempList.sort(Comparator.comparing(CustomerPolicy::getPremium));
+				break;
+				
+			case "policy_type":
+				tempList.sort(Comparator.comparing(CustomerPolicy::getPolicy_type));
+				break;
+				
+			case "insurer_name":
+				tempList.sort(Comparator.comparing(CustomerPolicy::getInsurer_name));
+				break;
+		}
+		
+		CustomerPolicyList filterPolicyList = new CustomerPolicyList(tempList);
+		
+		
+		modelAndView.addObject("customerPolicies", filterPolicyList.getCustomerPolicy());
+		
+		//Adds the clients name to specific parts of the page to pass it further along.
+		modelAndView.addObject("client_name", client_name);
+		
+		//Sets up the filter on page
+		PolicyFilter newFilter = new PolicyFilter();
+		newFilter.setPremiumMax(9999999.99f);
+		modelAndView.addObject("PolicyFilter", newFilter);
+		
+		return modelAndView;
+	}
+	
 }

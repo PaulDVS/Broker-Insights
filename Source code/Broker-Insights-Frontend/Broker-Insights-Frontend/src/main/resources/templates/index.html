@@ -23,7 +23,7 @@
 	
 		<div id="search_page" style="width:100%">
 	
-			<div class="col-sm-3" style="width:50%; height:75px; margin:auto; background-color: #d35f05">
+			<div class="col-sm-3" style="width:50%; margin:auto; background-color: #d35f05">
 			
 				<!-- Form to allow users to select the client to search policies for -->
 				<form action="#" th:action="@{/searchClientsPolicies}" method="post" th:object="${Client}">
@@ -39,6 +39,63 @@
 								type="submit" value="Search" id="searchBtn">
 					<div style="height:10px"></div>
 				</form>
+				<div style="height:20px"></div>
+				
+				<!-- Form to allow users to filter and sort policy data -->
+				<form action="#" th:action="@{'/filterPolicy/' + ${client_name}}" method="post" th:object="${PolicyFilter}" th:if="${!customerPolicies.isEmpty()}">
+					<select style="width:90%; margin-left: 10px;" class="form-control" id="sortField" th:field="*{sortField}">
+						<option value="">Select field to sort on</option>
+						<option value="customer_name">Customer Name</option>
+						<option value="customer_address">Customer Address</option>
+						<option value="premium">Premium</option>
+						<option value="policy_type">Policy Type</option>
+						<option value="insurer_name">Insurer name</option>
+					</select>
+					
+					<div style="height:10px"></div>
+					
+					<div class="form-group mt-3" style="margin-left:20px">
+						<label>Customer Name contains:</label> <input class="form-control"
+						type="text" th:field="*{customerFilter}"> <span
+						th:if="${#fields.hasErrors('customerFilter')}"
+						th:errors="*{customerFilter}"></span>
+					</div>
+					
+					<div style="height:10px"></div>
+					
+					<div class="form-group mt-3" style="margin-left:20px">
+						<label>Customer Address contains:</label> <input class="form-control"
+						type="text" th:field="*{addressFilter}"> <span
+						th:if="${#fields.hasErrors('addressFilter')}"
+						th:errors="*{addressFilter}"></span>
+					</div>
+					
+					<div style="height:10px"></div>
+					
+					<div class="form-group mt-3" style="margin-left:20px">
+						<label>Premium Min:</label> <input class="form-control"
+						type="text" th:field="*{premiumMin}"> <span
+						th:if="${#fields.hasErrors('premiumMin')}"
+						th:errors="*{premiumMin}"></span>
+					</div>
+					
+					<div style="height:10px"></div>
+					
+					<div class="form-group mt-3" style="margin-left:20px">
+						<label>Premium Max:</label> <input class="form-control"
+						type="text" th:field="*{premiumMax}"> <span
+						th:if="${#fields.hasErrors('premiumMax')}"
+						th:errors="*{premiumMax}"></span>
+					</div>
+					
+					<div style="height:10px"></div>
+				
+					<input class="btn btn-primary mt-5" style="float: right; margin-right: 10px; margin-bottom: 10px;"
+								type="submit" value="Filter" id="searchBtn">
+					<div style="height:10px"></div>
+				</form>
+				
+				<div style="height:20px"></div>
 				
 			</div>
 			
