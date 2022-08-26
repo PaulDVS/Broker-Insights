@@ -72,17 +72,26 @@ public class PoliciesController {
 				
 		modelAndView.setViewName("index");
 		
-		//Uses the name of the current client to get a list of policies
-		CustomerPolicyList customerPolicyList = policyService.getClientPolicies(currentClient.getClient_name());
-		modelAndView.addObject("customerPolicies", customerPolicyList.getCustomerPolicy());
-		
 		//Adds the clients name to specific parts of the page to pass it further along.
 		modelAndView.addObject("client_name", currentClient.getClient_name());
-		
+				
 		//Sets up the filter on page
 		PolicyFilter newFilter = new PolicyFilter();
 		newFilter.setPremiumMax(9999999.99f);
 		modelAndView.addObject("PolicyFilter", newFilter);
+		
+		//If client name is blank return
+		if(currentClient.getClient_name() == "") {
+			//Creates a blank CustomerPolicy, required so that the Div that would contain all the loaded policies doesnt throw errors
+			ArrayList<CustomerPolicy> temp = new ArrayList<CustomerPolicy>();
+			modelAndView.addObject("customerPolicies", temp);
+			return modelAndView;
+		}
+
+		
+		//Uses the name of the current client to get a list of policies
+		CustomerPolicyList customerPolicyList = policyService.getClientPolicies(currentClient.getClient_name());
+		modelAndView.addObject("customerPolicies", customerPolicyList.getCustomerPolicy());
 		
 		return modelAndView;
 	}
