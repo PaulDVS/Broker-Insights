@@ -11,8 +11,8 @@ To accomplish this 3 items were created.
     
 Source code
     The database is contained in the database folder. The v2 folder contains the correct, up to date version of the database.
-    The backend was created in the Eclipse IDE using Java. It is located in the /source code/Broker-Insights-Backend/ file.
-    The frontend was created in the Eclipse IDE using Java. It is located in the /source code/Broker-Insights-Frontend/ file.
+    The backend was created in the Eclipse IDE using Java 11. It is located in the /source code/Broker-Insights-Backend/ file.
+    The frontend was created in the Eclipse IDE using Java 11. It is located in the /source code/Broker-Insights-Frontend/ file.
         The HTML part of the frontend is part of the Java project, and by running the java project will be displayed.
         
 Access requirements.
@@ -25,6 +25,8 @@ Access requirements.
     The Backend can be accessed on the port 8090. If run locally throught eclipse, then use http://localhost:8090/ to access the api.
         This can be changed in the /src/main/resources/application.properties file.
             Set server.port= to the required port number.
+            
+        Any changes to the backend IP address and port number will have to be mirrored in the frontend in the src/main/java/com.br.in.service/PolicyServiceImpl.java file. Each instance of the restTemplate will require that "http://localhost:8090" be updated for the new location of the backend.
             
     The Frontend can be accessed on the port 8091. If run locally throught eclipse, then use http://localhost:8091/ to access the website.
         This can be changed in the /src/main/resources/application.properties file.
