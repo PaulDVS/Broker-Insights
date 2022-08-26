@@ -33,4 +33,8 @@ Access requirements.
 Incomplete Functionality:
     Error handling: Due to time constraints, try-catch statements and custom exceptions were not implemented.  
     Testing: While manual testing was done, J-unit testing was not yet implemented.  
-    Search/Filter: In-progress.  
+
+Known bugs:
+    Creating a filter that leads to 0 results, causes filter screen to dissapear.
+    
+
