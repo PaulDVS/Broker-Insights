@@ -29,3 +29,8 @@ Access requirements.
     The Frontend can be accessed on the port 8091. If run locally throught eclipse, then use http://localhost:8091/ to access the website.
         This can be changed in the /src/main/resources/application.properties file.
             Set server.port= to the required port number.
+            
+Incomplete Functionality:
+    Error handling: Due to time constraints, try-catch statements and custom exceptions were not implemented.
+    Testing: While manual testing was done, J-unit testing was not yet implemented.
+    Search/Filter: In-progress.
