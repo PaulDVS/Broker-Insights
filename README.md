@@ -31,6 +31,6 @@ Access requirements.
             Set server.port= to the required port number.
             
 Incomplete Functionality:
-    Error handling: Due to time constraints, try-catch statements and custom exceptions were not implemented.
-    Testing: While manual testing was done, J-unit testing was not yet implemented.
-    Search/Filter: In-progress.
+    Error handling: Due to time constraints, try-catch statements and custom exceptions were not implemented.  
+    Testing: While manual testing was done, J-unit testing was not yet implemented.  
+    Search/Filter: In-progress.  
